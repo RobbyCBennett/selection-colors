@@ -23,6 +23,11 @@ if (location.hash != '#popup') {
 	bigOptionsLink.className = 'hidden';
 }
 
+// Link: ratings
+if (typeof browser !== 'undefined') {
+	document.getElementById('rate').remove();
+}
+
 
 
 // Colors
@@ -233,7 +238,7 @@ for (const range of document.querySelectorAll('input[type="range"]')) {
 		container.appendChild(unitContainer);
 
 		const unitElement = document.createElement(unitTagName);
-		unitElement.innerHTML = unit;
+		unitElement.innerText = unit;
 		unitContainer.appendChild(unitElement);
 	}
 

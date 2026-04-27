@@ -50,15 +50,17 @@ async function setStyleAndColorsBeforeLoad() {
 	const tx = options.tx ? makeColor(options.txHue, options.txSat, options.txBri, options.txOpa) : 'inherit';
 
 	// Create css rules
-	const rules = [`
-		:root {
+	const rules = [
+		`:root {
 			--selection-colors-bg: ${bg};
 			--selection-colors-tx: ${tx};
-		}
-		`,`
-		::selection,
-		body ::selection,
-		input::-webkit-datetime-edit-ampm-field:focus,
+		}`,
+		`::selection,
+		body ::selection {
+			background-color: var(--selection-colors-bg) !important;
+			color: var(--selection-colors-tx) !important;
+		}`,
+		`input::-webkit-datetime-edit-ampm-field:focus,
 		input::-webkit-datetime-edit-day-field:focus,
 		input::-webkit-datetime-edit-hour-field:focus,
 		input::-webkit-datetime-edit-millisecond-field:focus,
@@ -69,14 +71,18 @@ async function setStyleAndColorsBeforeLoad() {
 		input::-webkit-datetime-edit-year-field:focus {
 			background-color: var(--selection-colors-bg) !important;
 			color: var(--selection-colors-tx) !important;
-		}
-	`];
+		}`,
+	];
 
 	// Append stylesheet to body
 	const newStyleSheet = document.createElement('style');
 	document.head.appendChild(newStyleSheet);
 	for (const rule of rules) {
-		newStyleSheet.sheet.insertRule(rule);
+		try {
+			newStyleSheet.sheet.insertRule(rule);
+		} catch (error) {
+
+		}
 	}
 }
 setStyleAndColorsBeforeLoad();

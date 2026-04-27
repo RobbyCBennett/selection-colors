@@ -194,6 +194,7 @@ input[type='checkbox'], input[type='checkbox']::before {
 	pointer-events: none;
 }
 input[type='checkbox'] {
+	appearance: none;
 	-webkit-appearance: none;
 	width: calc(var(--circle) * 1.5);
 	height: calc(var(--circle) * 0.75);
@@ -223,6 +224,7 @@ input[type='checkbox']:checked::before {
 
 /* Range */
 input[type='range'] {
+	appearance: none;
 	-webkit-appearance: none;
 	width: var(--range);
 	height: calc(var(--rem) * 2);
@@ -230,6 +232,16 @@ input[type='range'] {
 	background-color: transparent;
 	cursor: pointer;
 	margin: 0 var(--margin);
+}
+input[type='range']::-moz-range-thumb {
+	appearance: none;
+	width: var(--circle);
+	height: var(--circle);
+	border-radius: var(--circle);
+	background-color: var(--color);
+	margin-top: calc(var(--circle) * -0.125);
+	outline: calc(var(--circle) * 0.25) solid var(--hover);
+	border: none;
 }
 input[type='range']::-webkit-slider-thumb {
 	-webkit-appearance: none;
@@ -239,9 +251,19 @@ input[type='range']::-webkit-slider-thumb {
 	background-color: var(--color);
 	margin-top: calc(var(--circle) * -0.125);
 	outline: calc(var(--circle) * 0.25) solid var(--hover);
+	border: none;
+}
+input[type='range']:hover::-moz-range-thumb {
+	outline-color: var(--option);
 }
 input[type='range']:hover::-webkit-slider-thumb {
 	outline-color: var(--option);
+}
+input[type='range']::-moz-range-track {
+	cursor: pointer;
+	height: calc(var(--circle) * 0.75);
+	border-radius: var(--circle);
+	background-color: var(--active);
 }
 input[type='range']::-webkit-slider-runnable-track {
 	cursor: pointer;
@@ -253,29 +275,56 @@ input[type='range']::-webkit-slider-runnable-track {
 
 
 /* Range colors */
+.bg input[type='range']::-moz-range-thumb {
+	background-color: var(--bgNoAlpha);
+}
 .bg input[type='range']::-webkit-slider-thumb {
 	background-color: var(--bgNoAlpha);
+}
+.tx input[type='range']::-moz-range-thumb {
+	background-color: var(--txNoAlpha);
 }
 .tx input[type='range']::-webkit-slider-thumb {
 	background-color: var(--txNoAlpha);
 }
+.hue ::-moz-range-track {
+	background: var(--hue);
+}
 .hue ::-webkit-slider-runnable-track {
 	background: var(--hue);
+}
+#bgSat::-moz-range-track {
+	background: var(--bgSat);
 }
 #bgSat::-webkit-slider-runnable-track {
 	background: var(--bgSat);
 }
+#txSat::-moz-range-track {
+	background: var(--txSat);
+}
 #txSat::-webkit-slider-runnable-track {
 	background: var(--txSat);
+}
+#bgBri::-moz-range-track {
+	background: var(--bgBri);
 }
 #bgBri::-webkit-slider-runnable-track {
 	background: var(--bgBri);
 }
+#txBri::-moz-range-track {
+	background: var(--txBri);
+}
 #txBri::-webkit-slider-runnable-track {
 	background: var(--txBri);
 }
+#bgOpa::-moz-range-track {
+	background: var(--bgOpa);
+}
 #bgOpa::-webkit-slider-runnable-track {
 	background: var(--bgOpa);
+}
+#txOpa::-moz-range-track {
+	background: var(--txOpa);
 }
 #txOpa::-webkit-slider-runnable-track {
 	background: var(--txOpa);
@@ -291,6 +340,7 @@ input[type='range']::-webkit-slider-runnable-track {
 	width: var(--number);
 	text-align: right;
 	background-color: transparent;
+	appearance: textfield;
 }
 .rangeNumberUnit {
 	padding-left: calc(var(--numberUnit) * 0.5);
